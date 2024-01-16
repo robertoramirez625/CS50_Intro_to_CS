@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+
+    int input = get_int("Height: ");
+    int hashCounter = 0;
+    int spaceCounter = input;
+
+    if (input < 1 || input > 8)
+    {
+        main();
+    }
+    while (hashCounter < input)
+    {
+        hashCounter += 1;
+        spaceCounter -= 1;
+
+        for (int i = 0; i < spaceCounter; i++)
+        {
+            printf(" ");
+        }
+
+        for (int j = 0; j < hashCounter; j++)
+        {
+            printf("#");
+        }
+        printf(" ");
+        printf(" ");
+
+        for (int j = 0; j < hashCounter; j++)
+        {
+            printf("#");
+        }
+
+        printf("\n");
+    }
+
+}
