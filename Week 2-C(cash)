@@ -1,0 +1,40 @@
+#include <stdio.h>
+#include <cs50.h>
+
+int main(void)
+{
+    int change = get_int("Change owed: ");
+    int bite = 0;
+    int counter = 0;
+    if (change < 0)
+    {
+        main();
+    }
+
+    while (change > 0)
+    {
+
+        if (change - 25 >= 0)
+        {
+            change -= 25;
+            counter += 1;
+        }
+        else if (change - 10 >= 0)
+        {
+            change -= 10;
+            counter += 1;
+        }
+        else if (change - 5 >= 0)
+        {
+            change -= 5;
+            counter += 1;
+        }
+        else
+        {
+            change -= 1;
+            counter += 1;
+        }
+    }
+
+    printf("%d\n", counter);
+}
