@@ -1,0 +1,86 @@
+#include <cs50.h>
+#include <stdio.h>
+
+void checkType(int size, long longNumber, long validVal){
+    if (validVal % 10 == 0)
+    {
+        if ((size == 15) && (longNumber / 10000000000000 == 34 || longNumber / 10000000000000 == 37))
+        {
+            printf("AMEX\n");
+        }
+        else if ((size == 16) && (longNumber / 100000000000000 == 51 || longNumber / 100000000000000 == 52 || longNumber / 100000000000000 == 53 || longNumber / 100000000000000 == 54 || longNumber / 100000000000000 == 55))
+        {
+            printf("MASTERCARD\n");
+        }
+        else if ((size == 13 || size == 16) && (longNumber / 1000000000000 == 4 || longNumber / 1000000000000000 == 4))
+        {
+            printf("VISA\n");
+        }
+        else
+        {
+            printf("INVALID\n");
+        }
+    }
+    else
+    {
+        printf("INVALID\n");
+    }
+}
+
+int main(void)
+{
+    long longNumber = get_long("Number: ");
+    char longString[1000];
+    int size = sprintf(longString, "%li", longNumber);
+    long moduloVal = 100;
+    long counter = 10;
+    long validVal = 0;
+    int i = 0;
+
+    while (i < size / 2)
+    {
+        long extractedVal = (longNumber % moduloVal) / counter;
+
+        long product = extractedVal * 2;
+
+        if (product > 9)
+        {
+            validVal += (product % 10) + (product / 10);
+        }
+        else
+        {
+            validVal += product;
+        }
+
+        moduloVal = moduloVal * 100;
+        counter = counter * 100;
+        i++;
+    }
+
+    moduloVal = 10;
+    counter = 1;
+    i = 0;
+    int checkVal;
+    
+    if (size % 2 == 0)
+    {
+        checkVal = size / 2;
+    }
+    else
+    {
+        checkVal = size / 2 + 1;
+    }
+
+    while (i < checkVal)
+    {
+        long extractedVal = (longNumber % moduloVal) / counter;
+        validVal += extractedVal;
+        moduloVal = moduloVal * 100;
+        counter = counter * 100;
+        i++;
+    }
+
+    checkType(size, longNumber, validVal);
+
+    return 0;
+}
