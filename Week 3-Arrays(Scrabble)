@@ -1,0 +1,159 @@
+#include <ctype.h>
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+
+int findScore(string inputVal, int score);
+
+int main(void)
+{
+    string input1 = get_string("Player 1 : ");
+    int inputLength1 = strlen(input1);
+    int sum1 = 0;
+    int score = 0;
+
+    for (int i = 0; i < inputLength1; i++)
+    {
+        score = findScore(&input1[i], score);
+        sum1 += score;
+    }
+
+    string input2 = get_string("Player 2 : ");
+    int inputLength2 = strlen(input2);
+    int sum2 = 0;
+
+    for (int i = 0; i < inputLength2; i++)
+    {
+        score = findScore(&input2[i], score);
+        sum2 += score;
+    }
+    if (sum1 == sum2)
+    {
+        printf("Tie!\n");
+    }
+    else if (sum1 > sum2)
+    {
+        printf("Player 1 wins!\n");
+    }
+    else
+    {
+        printf("Player 2 wins!\n");
+    }
+}
+
+int findScore(string inputVal, int score)
+{
+    char inputVar = toupper(inputVal[0]); // check string
+
+    switch (inputVar)
+    {
+
+    case 'A':
+        score = 1;
+        break;
+
+    case 'B':
+        score = 3;
+        break;
+
+    case 'C':
+        score = 3;
+        break;
+
+    case 'D':
+        score = 2;
+        break;
+
+    case 'E':
+        score = 1;
+        break;
+
+    case 'F':
+        score = 4;
+        break;
+
+    case 'G':
+        score = 2;
+        break;
+
+    case 'H':
+        score = 4;
+        break;
+
+    case 'I':
+        score = 1;
+        break;
+
+    case 'J':
+        score = 8;
+        break;
+
+    case 'K':
+        score = 5;
+        break;
+
+    case 'L':
+        score = 1;
+        break;
+
+    case 'M':
+        score = 3;
+        break;
+
+    case 'N':
+        score = 1;
+        break;
+
+    case 'O':
+        score = 1;
+        break;
+
+    case 'P':
+        score = 3;
+        break;
+
+    case 'Q':
+        score = 10;
+        break;
+
+    case 'R':
+        score = 1;
+        break;
+
+    case 'S':
+        score = 1;
+        break;
+
+    case 'T':
+        score = 1;
+        break;
+
+    case 'U':
+        score = 1;
+        break;
+
+    case 'V':
+        score = 4;
+        break;
+
+    case 'W':
+        score = 4;
+        break;
+
+    case 'X':
+        score = 8;
+        break;
+
+    case 'Y':
+        score = 4;
+        break;
+
+    case 'Z':
+        score = 10;
+        break;
+
+    default:
+        score = 0;
+    }
+    return score;
+}
