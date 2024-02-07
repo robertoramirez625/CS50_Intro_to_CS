@@ -16,6 +16,7 @@ int main(void)
     int wordCounter = countWords(inputText, textLength);
     int sentenceCounter = countSentences(inputText, textLength);
     int index = round(0.0588 * (((float)letterCounter / (float)wordCounter) * 100) - 0.296 * (((float)sentenceCounter / (float)wordCounter) * 100) - 15.8);
+    
     if (index > 16)
     {
         printf("Grade 16+\n");
